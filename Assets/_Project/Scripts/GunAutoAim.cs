@@ -2,8 +2,11 @@
 
 public class GunAutoAim : MonoBehaviour
 {
-    public float rotationSpeed = 10f;
-    public string enemyTag = "Enemy";
+    [Header("Параметры")]
+    //Радиус оружия
+    
+    private float rotationSpeed = 20f;
+    private string enemyTag = "Enemy";
 
     void Update()
     {

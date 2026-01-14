@@ -37,11 +37,11 @@ public class EnemySpawner : MonoBehaviour
             float x = Random.Range(-mapWidth / 2f, mapWidth / 2f);
             float z = Random.Range(-mapHeight / 2f, mapHeight / 2f);
 
-            spawnPosition = new Vector3(x, 0f, z);
+            spawnPosition = transform.position + new Vector3(x, 0f, z);
 
             float distanceToPlayer = Vector3.Distance(
                 new Vector3(player.position.x, 0f, player.position.z),
-                spawnPosition
+                new Vector3(spawnPosition.x, 0f, spawnPosition.z)
             );
 
             if (distanceToPlayer >= minDistanceFromPlayer)
@@ -54,6 +54,24 @@ public class EnemySpawner : MonoBehaviour
         if (foundPosition)
         {
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    // ===== GIZMOS =====
+    void OnDrawGizmosSelected()
+    {
+        // Границы карты
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(
+            transform.position,
+            new Vector3(mapWidth, 0.1f, mapHeight)
+        );
+
+        // Минимальная дистанция от игрока
+        if (player != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(player.position, minDistanceFromPlayer);
         }
     }
 }
