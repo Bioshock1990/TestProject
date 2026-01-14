@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawn settings")]
+    [Header("References")]
     public GameObject enemyPrefab;
     public Transform player;
 
+    [Header("Spawn settings")]
     public float spawnInterval = 1.5f;
-    public float minDistanceFromPlayer = 5f;
+    public float minDistanceFromPlayer = 6f;
+    public int maxEnemiesOnScene = 30;
     public int maxAttempts = 20;
 
     [Header("Map size")]
@@ -18,6 +20,10 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        // ❌ если врагов уже много — ничего не делаем
+        if (GetEnemyCount() >= maxEnemiesOnScene)
+            return;
+
         timer += Time.deltaTime;
 
         if (timer >= spawnInterval)
@@ -37,11 +43,11 @@ public class EnemySpawner : MonoBehaviour
             float x = Random.Range(-mapWidth / 2f, mapWidth / 2f);
             float z = Random.Range(-mapHeight / 2f, mapHeight / 2f);
 
-            spawnPosition = transform.position + new Vector3(x, 0f, z);
+            spawnPosition = new Vector3(x, 0f, z);
 
             float distanceToPlayer = Vector3.Distance(
                 new Vector3(player.position.x, 0f, player.position.z),
-                new Vector3(spawnPosition.x, 0f, spawnPosition.z)
+                spawnPosition
             );
 
             if (distanceToPlayer >= minDistanceFromPlayer)
@@ -57,21 +63,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // ===== GIZMOS =====
-    void OnDrawGizmosSelected()
+    int GetEnemyCount()
     {
-        // Границы карты
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(
-            transform.position,
-            new Vector3(mapWidth, 0.1f, mapHeight)
-        );
-
-        // Минимальная дистанция от игрока
-        if (player != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(player.position, minDistanceFromPlayer);
-        }
+        return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 }
