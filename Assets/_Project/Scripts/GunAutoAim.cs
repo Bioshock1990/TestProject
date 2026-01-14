@@ -2,19 +2,22 @@
 
 public class GunAutoAim : MonoBehaviour
 {
-    [Header("Параметры")]
-    //Радиус оружия
-    
-    private float rotationSpeed = 20f;
-    private string enemyTag = "Enemy";
+    [Header("Target settings")]
+    public string enemyTag = "Enemy";
+    public float detectionRadius = 8f;
+
+    [Header("Rotation")]
+    public float rotationSpeed = 10f;
 
     void Update()
     {
-        GameObject nearestEnemy = FindNearestEnemy();
-        if (nearestEnemy == null) return;
+        GameObject nearestEnemy = FindNearestEnemyInRange();
+
+        if (nearestEnemy == null)
+            return;
 
         Vector3 direction = nearestEnemy.transform.position - transform.position;
-        direction.y = 0f; // ❗ игнорируем высоту
+        direction.y = 0f; // не наклоняемся вверх/вниз
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
@@ -25,16 +28,25 @@ public class GunAutoAim : MonoBehaviour
         );
     }
 
-    GameObject FindNearestEnemy()
+    GameObject FindNearestEnemyInRange()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameObject nearest = null;
-        float minDistance = Mathf.Infinity;
+        float minDistance = detectionRadius;
+
+        Vector3 gunPos = new Vector3(transform.position.x, 0f, transform.position.z);
 
         foreach (GameObject enemy in enemies)
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < minDistance)
+            Vector3 enemyPos = new Vector3(
+                enemy.transform.position.x,
+                0f,
+                enemy.transform.position.z
+            );
+
+            float distance = Vector3.Distance(gunPos, enemyPos);
+
+            if (distance <= minDistance)
             {
                 minDistance = distance;
                 nearest = enemy;
@@ -43,4 +55,12 @@ public class GunAutoAim : MonoBehaviour
 
         return nearest;
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+#endif
 }
