@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8783931948318598326
+--- !u!1001 &8452853365267831442
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,8 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.079124
+      value: -3.493
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.8385725
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
       propertyPath: m_Name
       value: Turret 1
@@ -55,5 +67,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6787612976303350670, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3523187618847588229}
   m_SourcePrefab: {fileID: 100100000, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+--- !u!1 &3133629388950976796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6787612976303350670, guid: c727d931416df0d40b2bacd4a94f98a1, type: 3}
+  m_PrefabInstance: {fileID: 8452853365267831442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3523187618847588229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133629388950976796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bb5051147a326409f1bba27353f4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 10
+  attackSpeed: 1
+  damage: 10
+  critChance: 0.1

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8294819716535764420
+--- !u!1001 &784495521089009858
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.079124
+      value: -3.493
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.8385725
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,5 +55,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -9042275899081167588, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6689423465417812701}
   m_SourcePrefab: {fileID: 100100000, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
+--- !u!1 &603613738692892126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -9042275899081167588, guid: a1e11d9eb4c44284fbda57e75b4cb2ed, type: 3}
+  m_PrefabInstance: {fileID: 784495521089009858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6689423465417812701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603613738692892126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bb5051147a326409f1bba27353f4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 10
+  attackSpeed: 1
+  damage: 10
+  critChance: 0.1
